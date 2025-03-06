@@ -14,7 +14,6 @@ Intentelo de nuevo.
 """
 vacio="""La lista de los vehiculos del área del mantenimiento está vacío 
 agregue un modelo de vehiculo de la lista que se le mostró.
-O de lo contrario agregue un vehiculo de la lista antes mostrada.
 """
 
 inventario=[]
@@ -62,7 +61,10 @@ while True:
                 print(f"El vehiculo {modelo} no se encuentra en la lista ")
 
     elif opcion == "3":
-        print(" \n Inventario actualizado: ")
+        if not inventario:
+            print(vacio)
+        else:
+            print(" \n Inventario actualizado: ")
         print(inventario)
 
     elif opcion == "4":
