@@ -7,8 +7,19 @@ Sedanes: Rio, K3, K4, Optima, Stinger
 SUVS: EV6, Sportage e-HYBRID, Sonet, Telluride, Seltos, Niro, Sorento, Carnival"""
 DESPEDIDA="""Saliendo...
 Gracias por usar este programa, este programa fue desarrollado por JulioGilzChang"""
+ADVERTENCIA= """No se Agregó el vehiculo 
+ya que no se encuentra en la lista de los modelos que te enseñamos en un principio,
+o puede que hayas escrito el nombre mal, favor de escribirlo tal cual se muestra en la lista.
+Intentelo de nuevo.
+"""
+vacio="""La lista de los vehiculos del área del mantenimiento está vacío 
+agregue un modelo de vehiculo de la lista que se le mostró.
+O de lo contrario agregue un vehiculo de la lista antes mostrada.
+"""
 
-inventario= ["Rio", "K3","K4", "Optima", "Stinger",
+inventario=[]
+
+concesionario= ["Rio", "K3","K4", "Optima", "Stinger",
 "EV6", "Sportage e-HYBRID", "Sonet" , "Telluride", "Seltos", "Niro" ,"Sorento", "Carnival"]
 
 OPCIONES="""
@@ -27,24 +38,28 @@ while True:
     opcion=input(" Elige una opcion del (1 al 4): ")
 
     if opcion == "1":
-        print("\ningresa el modelo que quieres agregar: " )
-        modelo=input("Modelo ").strip()
+        while True:
+            print("\ningresa el modelo que quieres agregar: " )
+            modelo=input("Modelo ").strip()
 
-        if modelo:
-            inventario.append(modelo)
-            print(f" Modelo {modelo} agregado al inventario. ")
-        else:
-            print(" Modelo no válido. No se agregó el vehiculo ")
+            if modelo in concesionario:
+                inventario.append(modelo)
+                print(f" Modelo {modelo} agregado al inventario. ")
+                break
+            else:
+                print(ADVERTENCIA)
 
     elif opcion == "2":
-        print(" \nIngresa el modelo del vehiculo que quieres quitar de la lista: ")
-        modelo = input(" modelo: ").strip()
-
-        if modelo in inventario:
-            inventario.remove(modelo)
-            print(f" Vehiculo {modelo} eliminado del inventario. ")
-        else:
-            print("El vehiculo {modelo} no se encuentra en la lista ")
+        
+            print(" \nIngresa el modelo del vehiculo que quieres quitar de la lista: ")
+            modelo = input(" modelo: ").strip()
+            if not inventario:
+                print(vacio)
+            elif modelo in inventario:
+                inventario.remove(modelo)
+                print(f" Vehiculo {modelo} eliminado del inventario. ")
+            else:
+                print(f"El vehiculo {modelo} no se encuentra en la lista ")
 
     elif opcion == "3":
         print(" \n Inventario actualizado: ")
